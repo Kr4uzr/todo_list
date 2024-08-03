@@ -1,10 +1,8 @@
 ﻿using todo_list.Enums;
 using todo_list.Models;
 
-namespace todo_list.Service.TasksService
-{
-    public interface ITasksInterface
-    {
+namespace todo_list.Service.TasksService {
+    public interface ITasksInterface {
 
         Task<ServiceResponse<List<TasksModel>>> CreateTask(TasksModel newTask);
         Task<ServiceResponse<List<TasksModel>>> GetTasks();
