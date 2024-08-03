@@ -1,0 +1,28 @@
+<div class="divRegister">
+  <div>
+    <h2 class="titleEdit">Editar</h2>
+  </div>
+  <form #taskForm="ngForm">
+    <div style="margin-top: 1rem;">
+      <mat-form-field style="width: 100%;">
+        <mat-label>Escreva sua Tarefa</mat-label>
+        <input class="form-control" ngModel name="task" matInput placeholder="Ex. Estudar .Net" value="">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field style="width: 100%;">
+        <mat-label>Selecione o Status:</mat-label>
+        <mat-select>
+          <mat-option value="">Todos</mat-option>
+          <mat-option value="Novo">Novo</mat-option>
+          <mat-option value="Fazendo">Fazendo</mat-option>
+          <mat-option value="Feito">Feito</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="buttonSubmit">
+      <button mat-flat-button type="submit">Inserir</button>
+      <button mat-flat-button type="submit">Inserir</button>
+    </div>
+  </form>
+</div>

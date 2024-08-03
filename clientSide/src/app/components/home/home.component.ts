@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { TasksService } from '../../services/tasks.service';
 import { Tasks } from '../../models/Tasks';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import  { MatDialog } from '@angular/material/dialog';
+import { ModalDeleteComponent } from '../../modal-delete/modal-delete.component';
+import { ModalEditComponent } from '../../modal-edit/modal-edit.component';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +16,7 @@ export class HomeComponent implements OnInit {
   tasks: Tasks[] = [];
   allTasks: Tasks[] = [];
 
-  constructor(private tasksService: TasksService) {
+  constructor(private tasksService: TasksService, public dialog: MatDialog) {
 
   }
 
@@ -64,5 +66,13 @@ export class HomeComponent implements OnInit {
         window.location.reload();
       });
     }
+  }
+
+  openModalEdit(){
+    this.dialog.open(ModalEditComponent, {
+      width: '50rem',
+      height: '20rem'
+    });
+
   }
 }

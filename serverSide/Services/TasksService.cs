@@ -59,13 +59,13 @@ namespace todo_list.Service.TasksService {
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<TasksModel>>> GetTasksByStatus(TaskEnum status)
+        public async Task<ServiceResponse<List<TasksModel>>> GetTasksById(int id)
         {
             ServiceResponse<List<TasksModel>> serviceResponse = new ServiceResponse<List<TasksModel>>();
 
             try {
 
-                serviceResponse.data = _appDbContext.tasks.Where(x => x.status == status).ToList();
+                serviceResponse.data = _appDbContext.tasks.Where(x => x.id == id).ToList();
                 serviceResponse.message = serviceResponse.data.Count == 0 ? serviceResponse.message = "Nenhuma tarefa com o status: " : "Tarefas encontradas com sucesso!";
                 serviceResponse.response = true;
 
