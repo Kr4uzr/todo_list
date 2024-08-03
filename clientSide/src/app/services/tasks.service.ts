@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Tasks } from '../models/Tasks';
@@ -10,17 +11,18 @@ import { Response } from '../models/Response';
 
 export class TasksService {
 
+  private urlAPI = `${environment.urlAPI}Tasks`
+
   constructor(private http: HttpClient) {
 
   }
 
-
   getTasks() : Observable<Response<Tasks[]>>{
-    return this.http.get<Response<Tasks[]>>('http://localhost:5163/api/Tasks');
+    return this.http.get<Response<Tasks[]>>(this.urlAPI);
   }
 
   createTask(task : Tasks) : Observable<Response<Tasks[]>>{
-    return this.http.post<Response<Tasks[]>>('http://localhost:5163/api/Tasks', task);
+    return this.http.post<Response<Tasks[]>>(`${this.urlAPI}`, task);
   }
 
 

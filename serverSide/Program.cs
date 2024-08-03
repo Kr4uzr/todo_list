@@ -15,6 +15,18 @@ builder.Services.AddDbContext<AppDbContext>(options => {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyCorsPolicy",
+        builder => builder
+                          .AllowAnyMethod()
+                          .AllowAnyHeader()
+                          //.WithExposedHeaders("Access-Control-Allow-Origin")
+                          //.AllowAnyOrigin() // <- allowes all!
+                          .WithOrigins("http://localhost:4200", "https://localhost:4200")
+                          );
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -23,6 +35,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("MyCorsPolicy");
 
 app.UseHttpsRedirection();
 

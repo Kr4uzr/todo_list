@@ -48,19 +48,20 @@ export class HomeComponent implements OnInit {
     const taskDescription = taskForm.form.value.task;
 
     if(taskDescription != ""){
-      const date = new Date();
-      let dateString = date.toLocaleDateString("en-CA");
 
       const taskData = {
         "id": 0,
         "status" : "Novo",
         "description": taskDescription,
-        "dateCreated": dateString,
+        "dateCreated": new Date(),
         "dateFinished": null
       }
 
-      this.tasksService.createTask(taskData).subscribe((data) => {
-        this.ngOnInit
+      console.log(taskData);
+
+
+      this.tasksService.createTask(taskData).subscribe(() => {
+        window.location.reload();
       });
     }
   }
