@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <div class="divRegister">
+      <form (ngSubmit)="createTask(taskForm)" #taskForm="ngForm">
+        <mat-form-field>
+          <mat-label>Escreva sua Tarefa</mat-label>
+          <input class="form-control" ngModel name="task" matInput placeholder="Ex. Estudar .Net" value="">
+        </mat-form-field>
+        <div style="margin-bottom: 1rem;">
+          <button mat-flat-button type="submit">Inserir</button>
+        </div>
+      </form>
+    </div>
+    <div class="divFilter">
+      <mat-form-field>
+        <mat-label>Selecione o Status:</mat-label>
+        <mat-select (selectionChange)="statusFilter($event)">
+          <mat-option value="">Todos</mat-option>
+          <mat-option value="Novo">Novo</mat-option>
+          <mat-option value="Fazendo">Fazendo</mat-option>
+          <mat-option value="Feito">Fazendo</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="divTable">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Descrição</th>
+            <th>Status</th>
+            <th>Data de Criação</th>
+            <th>Data de Finalização</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let task of tasks">
+          <tr>
+            <td>{{task.id}}</td>
+            <td>{{task.description}}</td>
+            <td>{{task.status}}</td>
+            <td>{{task.dateCreated}}</td>
+            <td>{{task.dateFinished == "Invalid Date" ? "" : task.dateFinished}}</td>
+            <td>
+              <button>Editar</button>
+              <button>Excluir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
