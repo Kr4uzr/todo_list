@@ -6,3 +6,17 @@
   justify-content: center;
   margin-bottom: 1rem;
 }
+
+.mat-header-center {
+  text-align: center;
+}
+
+.mat-cell-center {
+  text-align: center;
+}
+
+.table-container {
+  max-height: 530px;
+  overflow: auto;
+  scrollbar-width: thin;
+}

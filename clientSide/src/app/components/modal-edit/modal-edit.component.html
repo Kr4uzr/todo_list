@@ -4,13 +4,11 @@
   </div>
   <form (ngSubmit)="edit(taskForm, task.id)" #taskForm="ngForm">
     <div style="margin-top: 1rem;">
-      <mat-form-field style="width: 100%;">
+      <mat-form-field appearance="outline" class="mat-select-padding">
         <mat-label>Alterar Tarefa</mat-label>
         <input class="form-control" ngModel name="taskEdit" matInput placeholder="Ex. Estudar Angular">
       </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field style="width: 100%;">
+      <mat-form-field appearance="outline" class="mat-select-padding">
         <mat-label>Alterar Status:</mat-label>
         <mat-select ngModel name="statusEdit" >
           <mat-option value="">Selecione</mat-option>

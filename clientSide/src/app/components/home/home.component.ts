@@ -4,6 +4,7 @@ import { Tasks } from '../../models/Tasks';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalEditComponent } from '../modal-edit/modal-edit.component';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,11 @@ import { ModalEditComponent } from '../modal-edit/modal-edit.component';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
+
+  displayedColumns: string[] = ['id', 'status', 'description', 'dateCreated', 'dateFinished', 'actions'];
+
+  dataSource = new MatTableDataSource();
+  allDataSource = new MatTableDataSource();
 
   tasks: Tasks[] = [];
   allTasks: Tasks[] = [];
@@ -20,16 +26,12 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tasksService.getTasks().subscribe(data => {
-      const dataTasks = data.data;
+    this.tasksService.getTasks().subscribe(tasks => {
 
-      dataTasks.map((task) => {
-        task.dateCreated = new Date(task.dateCreated!).toLocaleDateString();
-        task.dateFinished = new Date(task.dateFinished!).toLocaleDateString();
-      });
-
-      this.tasks = data.data;
-      this.allTasks = data.data;
+      this.tasks = tasks.data;
+      this.allTasks = tasks.data;
+      this.dataSource.data = this.tasks;
+      this.allDataSource.data = this.allTasks;
 
     });
   }
@@ -38,6 +40,10 @@ export class HomeComponent implements OnInit {
 
     const target = event as HTMLSelectElement;
     const value = target.value;
+
+    this.dataSource.data = this.allDataSource.data.filter((task : any) => {
+      return task.status.includes(value);
+    })
 
     this.tasks = this.allTasks.filter(task => {
       return task.status.includes(value);
@@ -67,7 +73,7 @@ export class HomeComponent implements OnInit {
   openModalEdit(id : any){
     this.dialog.open(ModalEditComponent, {
       width: '50rem',
-      height: '20rem',
+      height: '22rem',
       data: {
         id: id
       }

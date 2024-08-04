@@ -3,5 +3,5 @@ export interface Tasks {
   status: string;
   description: string;
   dateCreated: Date | string;
-  dateFinished?: string | null;
+  dateFinished?: Date | string | null;
 }
