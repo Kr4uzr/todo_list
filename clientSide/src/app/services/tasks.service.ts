@@ -21,9 +21,19 @@ export class TasksService {
     return this.http.get<Response<Tasks[]>>(this.urlAPI);
   }
 
+  getTask(id : any) : Observable<Response<Tasks[]>>{
+    return this.http.get<Response<Tasks[]>>(`${this.urlAPI}/${id}`);
+  }
+
   createTask(task : Tasks) : Observable<Response<Tasks[]>>{
     return this.http.post<Response<Tasks[]>>(`${this.urlAPI}`, task);
   }
 
+  editTask(task : Tasks) : Observable<Response<Tasks[]>>{
+    return this.http.put<Response<Tasks[]>>(`${this.urlAPI}`, task);
+  }
 
+  deleteTask(id : any) : Observable<Response<Tasks[]>>{
+    return this.http.delete<Response<Tasks[]>>(`${this.urlAPI}?idDelete=${id}`);
+  }
 }

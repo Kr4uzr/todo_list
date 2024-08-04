@@ -1,19 +1,19 @@
-<div class="divRegister">
+<div class="divEdit">
   <div>
     <h2 class="titleEdit">Editar</h2>
   </div>
-  <form #taskForm="ngForm">
+  <form (ngSubmit)="edit(taskForm, task.id)" #taskForm="ngForm">
     <div style="margin-top: 1rem;">
       <mat-form-field style="width: 100%;">
-        <mat-label>Escreva sua Tarefa</mat-label>
-        <input class="form-control" ngModel name="task" matInput placeholder="Ex. Estudar .Net" value="">
+        <mat-label>Alterar Tarefa</mat-label>
+        <input class="form-control" ngModel name="taskEdit" matInput placeholder="Ex. Estudar Angular">
       </mat-form-field>
     </div>
     <div>
       <mat-form-field style="width: 100%;">
-        <mat-label>Selecione o Status:</mat-label>
-        <mat-select>
-          <mat-option value="">Todos</mat-option>
+        <mat-label>Alterar Status:</mat-label>
+        <mat-select ngModel name="statusEdit" >
+          <mat-option value="">Selecione</mat-option>
           <mat-option value="Novo">Novo</mat-option>
           <mat-option value="Fazendo">Fazendo</mat-option>
           <mat-option value="Feito">Feito</mat-option>
@@ -21,8 +21,7 @@
       </mat-form-field>
     </div>
     <div class="buttonSubmit">
-      <button mat-flat-button type="submit">Inserir</button>
-      <button mat-flat-button type="submit">Inserir</button>
+      <button mat-flat-button type="submit" style="background: #f0ad4e;">Editar</button>
     </div>
   </form>
 </div>

@@ -41,8 +41,8 @@
             <td>{{task.dateCreated}}</td>
             <td>{{task.dateFinished == "Invalid Date" ? "" : task.dateFinished}}</td>
             <td>
-              <button (click)="openModalEdit()" style="background: #f0ad4e;" mat-flat-button>Editar</button>
-              <button style="background: #d9534f;" mat-flat-button value="{{task.id}}">Excluir</button>
+              <button (click)="openModalEdit(task.id)" style="background: #f0ad4e;" mat-flat-button>Editar</button>
+              <button (click)="deleteTask(task.id)"style="background: #d9534f;" mat-flat-button>Excluir</button>
             </td>
           </tr>
         </tbody>

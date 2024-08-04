@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TasksService } from '../../services/tasks.service';
 import { Tasks } from '../../models/Tasks';
 import { NgForm } from '@angular/forms';
-import  { MatDialog } from '@angular/material/dialog';
-import { ModalDeleteComponent } from '../../modal-delete/modal-delete.component';
-import { ModalEditComponent } from '../../modal-edit/modal-edit.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalEditComponent } from '../modal-edit/modal-edit.component';
 
 @Component({
   selector: 'app-home',
@@ -59,20 +58,25 @@ export class HomeComponent implements OnInit {
         "dateFinished": null
       }
 
-      console.log(taskData);
-
-
       this.tasksService.createTask(taskData).subscribe(() => {
         window.location.reload();
       });
     }
   }
 
-  openModalEdit(){
+  openModalEdit(id : any){
     this.dialog.open(ModalEditComponent, {
       width: '50rem',
-      height: '20rem'
+      height: '20rem',
+      data: {
+        id: id
+      }
     });
+  }
 
+  deleteTask(id : any){
+    this.tasksService.deleteTask(id).subscribe(() => {
+      window.location.reload();
+    });
   }
 }
