@@ -1,6 +1,6 @@
 # Lista de Tarefa
 
-Aplicação simples de uma lista de tarefas, onde é possível buscar uma lista de tarefas do banco de dados, editar uma tarefa em especifico, deletar uma tarefa, e também filtrar pelo status da tarefa. 
+Aplicação simples de uma lista de tarefas, onde é possível buscar uma lista de tarefas do banco de dados, editar uma tarefa em especifico, deletar uma tarefa, e também filtrar pelo status da tarefa. Pude adquirir bastante conhecimento, uma vez que não domino as linguagens utilizadas, foi um processo desafiador e de muito aprendizado para mim.
 
 ## Tecnologias Utilizadas
 
