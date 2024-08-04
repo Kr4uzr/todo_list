@@ -12,6 +12,9 @@ namespace todo_list.Service.TasksService {
             _appDbContext = appDbContext;
         }
 
+        /**
+        * Realiza a criação de uma nova tarefa, inserindo no banco
+        */
         public async Task<ServiceResponse<List<TasksModel>>> CreateTask(TasksModel newTask) {
             ServiceResponse<List<TasksModel>> serviceResponse = new ServiceResponse<List<TasksModel>>();
 
@@ -39,7 +42,10 @@ namespace todo_list.Service.TasksService {
 
             return serviceResponse;
         }
-
+        
+        /**
+        * Busca todas as tarefas que estão cadastradas dentro do banco de dados
+        */
         public async Task<ServiceResponse<List<TasksModel>>> GetTasks()
         {
             ServiceResponse<List<TasksModel>> serviceResponse = new ServiceResponse<List<TasksModel>>();
@@ -59,6 +65,9 @@ namespace todo_list.Service.TasksService {
             return serviceResponse;
         }
 
+        /**
+        * Busca uma tarefa em especifico, apartir do id
+        */
         public async Task<ServiceResponse<List<TasksModel>>> GetTasksById(int id)
         {
             ServiceResponse<List<TasksModel>> serviceResponse = new ServiceResponse<List<TasksModel>>();
@@ -78,6 +87,9 @@ namespace todo_list.Service.TasksService {
             return serviceResponse;
         }
 
+        /**
+        * Realiza o update de uma tarefa em especifico
+        */
         public async Task<ServiceResponse<List<TasksModel>>> UpdateTask(TasksModel editTask)
         {
             ServiceResponse<List<TasksModel>> serviceResponse = new ServiceResponse<List<TasksModel>>();
@@ -114,6 +126,9 @@ namespace todo_list.Service.TasksService {
             return serviceResponse;
         }
 
+        /**
+        * Remove uma tarefa em especifico do banco de dados
+        */
         public async Task<ServiceResponse<List<TasksModel>>> DeleteTask(int idDelete) {
             ServiceResponse<List<TasksModel>> serviceResponse = new ServiceResponse<List<TasksModel>>();
 
