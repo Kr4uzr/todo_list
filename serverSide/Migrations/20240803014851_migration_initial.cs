@@ -20,8 +20,8 @@ namespace todo_list.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     status = table.Column<int>(type: "integer", nullable: false),
                     description = table.Column<string>(type: "text", nullable: false),
-                    dateCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    dateFinished = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    dateCreated = table.Column<DateTime>(type: "date", nullable: false),
+                    dateFinished = table.Column<DateTime>(type: "date", nullable: true)
                 },
                 constraints: table =>
                 {
