@@ -14,4 +14,4 @@ Aplicação de uma lista de tarefas, onde é possível buscar uma lista de taref
 - Clone ou baixe o repositório em sua máquina;
 - Apartir do root, navegue para a pasta `serverSide` e abra o arquivo `appsetting.json`, dentro dele está localizado `DefaultConnection`, configure a string com suas credenciais do banco de dados;
 - Abra dois terminais no root, em um dê um `cd serverSide` e em outro `cd clientSide`, dentro do terminal `serverSide` rode o comando `dotnet ef update database` para que seja criado a table no banco de dados e insira `dotnet run` para iniciar o backend e no terminal clientSide insira o comando `npm install` para baixar as depedências e `ng serve` para iniciar o frontend;
-- Por padrão o Angular utiliza a porta `4200`, mas sinta-se a vontade para alterar, dentro do `appsetting.json` realizei a alteração da porta nativa no dotnet para a `4201`.
+- Por padrão o Angular utiliza a porta `4200`, mas sinta-se a vontade para alterar, dentro do `appsetting.json` realizei a alteração da porta nativa no dotnet para a `4201`, swagger pode ser acessado pelo caminho `http://localhost:4201/swagger/index.html`.
