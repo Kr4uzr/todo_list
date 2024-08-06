@@ -12,8 +12,8 @@ using todo_list.Context;
 namespace todo_list.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240803014851_migration_initial")]
-    partial class migration_initial
+    [Migration("20240806014804_migration_adjust")]
+    partial class migration_adjust
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,10 +34,10 @@ namespace todo_list.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
                     b.Property<DateTime>("dateCreated")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime?>("dateFinished")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("description")
                         .IsRequired()

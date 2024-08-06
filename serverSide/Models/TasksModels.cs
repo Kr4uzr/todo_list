@@ -7,7 +7,7 @@ namespace todo_list.Models {
         public int id { get; set; }
         public TaskEnum status { get; set; }
         public string description { get; set; }
-        public DateTime dateCreated { get; set; } = DateTime.Now.ToLocalTime();
+        public DateTime dateCreated { get; set; }
         public DateTime? dateFinished { get; set; }
     }
 }
