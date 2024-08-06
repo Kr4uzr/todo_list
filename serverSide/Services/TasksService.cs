@@ -31,7 +31,7 @@ namespace todo_list.Service.TasksService {
                 await _appDbContext.SaveChangesAsync();
 
                 serviceResponse.data = _appDbContext.tasks.ToList();
-                serviceResponse.message = "Criado com sucesso!";
+                serviceResponse.message = "Tarefa criada com sucesso!";
                 serviceResponse.response = true;
 
             } catch (Exception ex) {
@@ -51,7 +51,7 @@ namespace todo_list.Service.TasksService {
             ServiceResponse<List<TasksModel>> serviceResponse = new ServiceResponse<List<TasksModel>>();
 
             try {
-                serviceResponse.data = _appDbContext.tasks.ToList();
+                serviceResponse.data = _appDbContext.tasks.OrderByDescending(x => x.id).ToList();
                 serviceResponse.message = serviceResponse.data.Count == 0 ? "Nenhuma tarefa cadastrada!" : "Tarefas encontradas com sucesso!";
                 serviceResponse.response = true;
 

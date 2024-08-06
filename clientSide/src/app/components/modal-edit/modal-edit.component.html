@@ -6,11 +6,11 @@
     <div style="margin-top: 1rem;">
       <mat-form-field appearance="outline" class="mat-select-padding">
         <mat-label>Alterar Tarefa</mat-label>
-        <input class="form-control" ngModel name="taskEdit" matInput placeholder="Ex. Estudar Angular">
+        <input class="form-control" [maxLength]="20" [(ngModel)]="task.description" name="taskEdit" matInput placeholder="Ex. Estudar Angular">
       </mat-form-field>
       <mat-form-field appearance="outline" class="mat-select-padding">
         <mat-label>Alterar Status:</mat-label>
-        <mat-select ngModel name="statusEdit" >
+        <mat-select [(ngModel)]="task.status" name="statusEdit" >
           <mat-option value="">Selecione</mat-option>
           <mat-option value="Novo">Novo</mat-option>
           <mat-option value="Fazendo">Fazendo</mat-option>

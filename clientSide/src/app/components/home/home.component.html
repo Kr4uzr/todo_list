@@ -3,7 +3,7 @@
       <form (ngSubmit)="createTask(taskForm)" #taskForm="ngForm">
         <mat-form-field appearance="outline" style="width: 100%;">
           <mat-label>Escreva sua Tarefa</mat-label>
-          <input class="form-control" ngModel name="task" matInput placeholder="Ex. Estudar .Net" value="">
+          <input class="form-control" [maxLength]="20" ngModel name="task" matInput placeholder="Ex. Estudar .Net" value="">
         </mat-form-field>
         <div class="buttonSubmit">
           <button mat-flat-button type="submit">Inserir</button>
@@ -13,7 +13,7 @@
     <div class="divFilter">
       <mat-form-field appearance="outline">
         <mat-label>Selecione o Status:</mat-label>
-        <mat-select (selectionChange)="statusFilter($event)">
+        <mat-select [(ngModel)]="status" (selectionChange)="statusFilter()">
           <mat-option value="">Todos</mat-option>
           <mat-option value="Novo">Novo</mat-option>
           <mat-option value="Fazendo">Fazendo</mat-option>
@@ -62,11 +62,8 @@
             <button (click)="deleteTask(element.id)" style="margin-right: 5px; color: #d9534f" matTooltip="Excluir Tarefa" mat-icon-button><mat-icon>delete</mat-icon></button>
           </td>
         </ng-container>
-
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-
-
     </div>
 </div>

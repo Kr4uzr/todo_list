@@ -25,7 +25,7 @@ namespace todo_list.Controllers {
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ServiceResponse<List<TasksModel>>>> GetTasksByStatus(int id) {
+        public async Task<ActionResult<ServiceResponse<List<TasksModel>>>> GetTasksById(int id) {
             return await _iTasksInterface.GetTasksById(id);
         }
 

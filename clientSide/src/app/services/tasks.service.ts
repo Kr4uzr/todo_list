@@ -11,7 +11,7 @@ import { Response } from '../models/Response';
 
 export class TasksService {
 
-  private urlAPI = `${environment.urlAPI}Tasks`
+  private urlAPI = `${environment.urlAPI}`
 
   constructor(private http: HttpClient) {
 

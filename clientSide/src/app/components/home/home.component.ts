@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { TasksService } from '../../services/tasks.service';
-import { Tasks } from '../../models/Tasks';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalEditComponent } from '../modal-edit/modal-edit.component';
 import { MatTableDataSource } from '@angular/material/table';
+
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
+
 export class HomeComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'status', 'description', 'dateCreated', 'dateFinished', 'actions'];
@@ -18,34 +20,33 @@ export class HomeComponent implements OnInit {
   dataSource = new MatTableDataSource();
   allDataSource = new MatTableDataSource();
 
-  tasks: Tasks[] = [];
-  allTasks: Tasks[] = [];
+  status = '';
 
-  constructor(private tasksService: TasksService, public dialog: MatDialog) {
+  constructor(
+    private tasksService : TasksService,
+    public dialog : MatDialog
+  ) {
 
   }
 
   ngOnInit(): void {
+    this.loadTable();
+  }
+
+  loadTable(){
     this.tasksService.getTasks().subscribe(tasks => {
 
-      this.tasks = tasks.data;
-      this.allTasks = tasks.data;
-      this.dataSource.data = this.tasks;
-      this.allDataSource.data = this.allTasks;
+      this.dataSource.data = tasks.data;
+      this.allDataSource.data = tasks.data;
 
     });
   }
 
-  statusFilter(event : Object){
+  statusFilter(){
 
-    const target = event as HTMLSelectElement;
-    const value = target.value;
+    const value = this.status;
 
     this.dataSource.data = this.allDataSource.data.filter((task : any) => {
-      return task.status.includes(value);
-    })
-
-    this.tasks = this.allTasks.filter(task => {
       return task.status.includes(value);
     })
   }
@@ -64,8 +65,22 @@ export class HomeComponent implements OnInit {
         "dateFinished": null
       }
 
-      this.tasksService.createTask(taskData).subscribe(() => {
-        window.location.reload();
+      this.tasksService.createTask(taskData).subscribe((data) => {
+        if(data.response == true){
+          Swal.fire({
+            text: data.message,
+            icon: "success",
+          }).then(() => {
+            this.loadTable();
+            taskForm.resetForm();
+            this.status = '';
+          });
+        } else if(data.response == false){
+          Swal.fire({
+            text: data.message,
+            icon: "warning",
+          });
+        }
       });
     }
   }
@@ -77,12 +92,40 @@ export class HomeComponent implements OnInit {
       data: {
         id: id
       }
+    }).afterClosed().subscribe(result => {
+      this.loadTable();
+      this.status = '';
     });
   }
 
   deleteTask(id : any){
-    this.tasksService.deleteTask(id).subscribe(() => {
-      window.location.reload();
+    Swal.fire({
+      text: "Deseja realmente apagar essa tarefa?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, Deletar",
+      cancelButtonText: "Cancelar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.tasksService.deleteTask(id).subscribe((data) => {
+          if(data.response == true){
+            Swal.fire({
+              text: data.message,
+              icon: "success",
+            }).then(() => {
+              this.loadTable();
+              this.status = '';
+            });
+          } else if(data.response == false){
+            Swal.fire({
+              text: data.message,
+              icon: "warning",
+            });
+          }
+        });
+      }
     });
   }
 }
